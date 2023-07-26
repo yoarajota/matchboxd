@@ -1,39 +1,64 @@
 .main {
-  background-color: rgb(19, 4, 4);
   padding: 40px 60px;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(40vh, 1fr));
+  grid-template-rows: repeat(2);
   row-gap: 1vh;
   position: absolute;
-  bottom: 0;
+  bottom: 40px;
   width: calc(100% - 120px);
+  height: 64vh;
 }
 
 .box {
   width: 40vh;
-  height: 34vh;
+  height: 30vh;
   border-radius: 12px;
-  background: rgb(213, 213, 213);
+  margin: 0 auto;
+  border: none;
+  box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+  line-height: 1;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  outline: 0;
+  text-decoration: none;
+  background: #456;
+  overflow: hidden;
+}
+
+.button-add-wrap {
+  width: 40vh;
+  height: 30vh;
+  display: flex;
+  align-items: center;
   margin: 0 auto;
 }
 
-.button {
-  width: 40vh;
-  height: 34vh;
-  filter: drop-shadow(1px 1px 1px #5116a9);
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
+.button-add {
+  width: 5vh;
+  height: 5vh;
+  margin: auto;
+  border-radius: 12px;
+  background: none;
+  border: 1px solid #def;
   cursor: pointer;
-  margin: 0 auto;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .input-container {
@@ -41,14 +66,15 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .input {
-  border: none;
-  background-color: #fff;
-  color: #333;
+  border: 1px solid #def;
+  border-width: 1px 0 1px 0;
+  background: none;
+  color: #fff;
   font-size: 16px;
-  border-radius: 4px 4px 0 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   padding: 3px 10px;
@@ -57,7 +83,7 @@
 }
 
 .input::placeholder {
-  color: #888;
+  color: #def;
 }
 
 .input:focus {
@@ -66,27 +92,113 @@
 }
 
 .button-delete {
-  padding: 10px;
+  padding: 5px;
   background: none;
   font-size: large;
-  font-weight: 600;
   border: none;
   cursor: pointer;
+  color: #def;
+}
+
+.button-delete-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  padding: 0 5px;
 }
 
 .button-send {
-  padding: 4px 14px;
-  border-radius: 4px;
+  overflow-wrap: break-word;
+  text-align: center;
+  font-style: inherit;
+  outline: 0;
+  vertical-align: baseline;
+  text-decoration: none;
   border: none;
+  border-radius: 3px;
+  display: flex;
+  font-weight: 600;
+  line-height: 1;
   cursor: pointer;
-  border: 1px solid white;
-  color: white;
-  background: none;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+  font-size: 1.23076923rem;
+  padding: .425em 1.5em;
+  background: #00c030;
+  color: #fff;
+  min-width: 120px;
+  justify-content: center;
 }
 
 .button-send-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 3px;
+}
+
+.logo-text {
+  color: #fff;
+}
+
+.logo-text-wrap {
+  padding: absolute;
+  bottom: 10px;
+}
+
+.watchlist {
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  height: 200px;
+  padding: 5px 15px;
+  color: #fff;
+}
+
+.match-title {
+  font-weight: 600;
+}
+
+.match-title-wrap {
+  padding: 10px 0;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.rainbow-animation-wrap {
+  display: flex;
+  height: 3px;
+  width: calc(40vh*4);
+}
+
+.rainbow-animation-part {
+  width: 40vh;
+  height: 100%;
+}
+
+.rainbow-animation-part:nth-child(1),
+.rainbow-animation-part:nth-child(4) {
+  background-color: #FF8000;
+}
+
+.rainbow-animation-part:nth-child(2),
+.rainbow-animation-part:nth-child(5) {
+  background-color: #00c030;
+}
+
+.rainbow-animation-part:nth-child(3) {
+  background-color: #40BCF4;
+}
+
+.loading {
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
 }

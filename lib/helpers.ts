@@ -1,47 +1,56 @@
-import { Film, WatchList } from "../types";
+import { Film, Result, WatchList } from "../src/types";
 
 export function getWatchListIntersection(arrays: WatchList[]): Array<Film> {
-    const filmMap: Map<string, Film> = new Map();
+  const filmMap: Map<string, Film> = new Map();
 
-    for (const film of arrays[0].watchlist) {
-        filmMap.set(film.slug, film);
+  for (const film of arrays[0].watchlist) {
+    filmMap.set(film.slug, film);
+  }
+
+  for (let i = 1; i < arrays.length; i++) {
+    const watchList = arrays[i];
+
+    if (watchList.watchlist.length === 0) {
+      filmMap.clear();
+      break;
     }
 
-    for (let i = 1; i < arrays.length; i++) {
-        const watchList = arrays[i];
+    filmMap.forEach((outsideFilm) => {
+      let finded = false;
 
-        if (watchList.watchlist.length === 0) {
-            filmMap.clear()
-            break;
+      for (const film of watchList.watchlist) {
+        const key = film.slug;
+
+        if (!finded && key === outsideFilm.slug) {
+          finded = true;
         }
 
-        filmMap.forEach((outsideFilm) => {
-            let finded = false;
+        const existingFilm = filmMap.get(key);
 
-            for (const film of watchList.watchlist) {
-                const key = film.slug;
+        if (!existingFilm || !isFilmEqual(existingFilm, film)) {
+          filmMap.delete(key);
+        }
+      }
 
-                if (!finded && key === outsideFilm.slug) {
-                    finded = true;
-                }
+      if (!finded) {
+        filmMap.delete(outsideFilm.slug);
+      }
+    });
+  }
 
-                const existingFilm = filmMap.get(key);
-
-                if (!existingFilm || !isFilmEqual(existingFilm, film)) {
-                    filmMap.delete(key);
-                }
-            }
-
-            if (!finded) {
-                filmMap.delete(outsideFilm.slug)
-            }
-        })
-
-    }
-
-    return Array.from(filmMap.values());
+  return Array.from(filmMap.values());
 }
 
 function isFilmEqual(film1: Film, film2: Film): boolean {
-    return film1.alt === film2.alt && film1.slug === film2.slug;
+  return film1.alt === film2.alt && film1.slug === film2.slug;
+}
+
+export function mountResult(result: WatchList[]) {
+  let obj: Result = {};
+
+  for (let key in result) {
+    obj[result[key].username] = result[key].watchlist;
+  }
+
+  return obj;
 }
