@@ -1,0 +1,92 @@
+.main {
+  background-color: rgb(19, 4, 4);
+  padding: 40px 60px;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 1vh;
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 120px);
+}
+
+.box {
+  width: 40vh;
+  height: 34vh;
+  border-radius: 12px;
+  background: rgb(213, 213, 213);
+  margin: 0 auto;
+}
+
+.button {
+  width: 40vh;
+  height: 34vh;
+  filter: drop-shadow(1px 1px 1px #5116a9);
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.input {
+  border: none;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  padding: 3px 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-delete {
+  padding: 10px;
+  background: none;
+  font-size: large;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.button-send {
+  padding: 4px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  border: 1px solid white;
+  color: white;
+  background: none;
+}
+
+.button-send-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+}
