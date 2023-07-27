@@ -4,14 +4,13 @@ function Plus() {
   return (
     <svg
       enableBackground="new 0 0 50 50"
-      height="50px"
+      height="30px"
       id="Layer_1"
       version="1.1"
-      viewBox="-1 5 50 50"
+      viewBox="0 -1 50 50"
       width="30px"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect fill="none" height="50" width="50" />
       <line
         fill="none"
         stroke="#def"

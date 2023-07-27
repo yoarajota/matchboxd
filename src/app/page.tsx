@@ -44,31 +44,31 @@ const Match = ({ data }: any) => {
       animate={{ scale: [0, 1] }}
       className={styles.box}
     >
-      <div>
-        <div className={styles["match-title-wrap"]}>
-          <h2 className={styles["match-title"]}>
-            {data?.length !== 0 ? "Matched!" : "Nothing matched..."}
-          </h2>
-        </div>
-        <div className={styles["watchlist"]}>
-          {data?.map((film: Film, index: number) => {
-            return (
-              <motion.a
-                target="__blank"
-                initial={{ opacity: 0, x: "-8px", scale: 1 }}
-                whileHover={{ scale: 1.01 }}
-                key={film.slug}
-                animate={{ x: ["-8px", "0px"], opacity: [0, 1] }}
-                href={`https://www.letterboxd.com/${film.slug}`}
-                transition={{ delay: 0.6 + index * 0.1 }}
-              >
-                {film.alt}
-              </motion.a>
-            );
-          })}
-        </div>
-        <Rainbow />
+      <div className={styles["match-title-wrap"]}>
+        <h3 className={styles["match-title"]}>
+          {data?.length !== 0 ? "Matched!" : "Nothing matched..."}
+        </h3>
       </div>
+      <div className={styles["watchlist"]}>
+        {data?.map((film: Film, index: number) => {
+          return (
+            <motion.a
+              target="__blank"
+              initial={index < 20 ? { opacity: 0, x: "-8px", scale: 1 } : {}}
+              whileHover={{ scale: 1.01 }}
+              key={film.slug}
+              animate={
+                index < 20 ? { x: ["-8px", "0px"], opacity: [0, 1] } : {}
+              }
+              href={`https://www.letterboxd.com/${film.slug}`}
+              transition={{ delay: 0.6 + index * 0.1 }}
+            >
+              {film.alt}
+            </motion.a>
+          );
+        })}
+      </div>
+      <Rainbow />
     </motion.div>
   );
 };
@@ -82,43 +82,45 @@ const Box = ({ animate, data, handleDelete, handleUsername }: any) => {
       animate={animate ? { scale: [0, 1] } : {}}
       className={styles.box}
     >
-      <div>
-        <div className={styles["input-container"]}>
-          <div className={styles["button-delete-wrap"]}>
-            <motion.button
-              initial={{ scale: 1 }}
+      <div className={styles["input-container"]}>
+        <div className={styles["button-delete-wrap"]}>
+          <motion.button
+            tabIndex={2}
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.01 }}
+            className={styles["button-delete"]}
+            onClick={handleDelete}
+          >
+            <Close />
+          </motion.button>
+        </div>
+        <input
+          tabIndex={1}
+          value={data?.username}
+          onChange={({ target: { value } }) => handleUsername(value)}
+          type="text"
+          className={styles.input}
+          placeholder="Letterboxd username"
+        />
+      </div>
+      <div className={styles["watchlist"]}>
+        {data?.watchList.map((film: Film, index: number) => {
+          return (
+            <motion.a
+              target="_blank"
+              initial={index < 20 ? { opacity: 0, x: "-8px", scale: 1 } : {}}
               whileHover={{ scale: 1.01 }}
-              className={styles["button-delete"]}
-              onClick={handleDelete}
+              animate={
+                index < 20 ? { x: ["-8px", "0px"], opacity: [0, 1] } : {}
+              }
+              key={film.slug}
+              href={`https://www.letterboxd.com/${film.slug}`}
+              transition={{ delay: index * 0.1 }}
             >
-              <Close />
-            </motion.button>
-          </div>
-          <input
-            value={data?.username}
-            onChange={({ target: { value } }) => handleUsername(value)}
-            type="text"
-            className={styles.input}
-            placeholder="Letterboxd username"
-          />
-        </div>
-        <div className={styles["watchlist"]}>
-          {data?.watchList.map((film: Film, index: number) => {
-            return (
-              <motion.a
-                target="_blank"
-                initial={{ opacity: 0, x: "-8px", scale: 1 }}
-                whileHover={{ scale: 1.01 }}
-                animate={{ x: ["-8px", "0px"], opacity: [0, 1] }}
-                key={film.slug}
-                href={`https://www.letterboxd.com/${film.slug}`}
-                transition={{ delay: index * 0.1 }}
-              >
-                {film.alt}
-              </motion.a>
-            );
-          })}
-        </div>
+              {film.alt}
+            </motion.a>
+          );
+        })}
       </div>
     </motion.div>
   );
@@ -203,6 +205,10 @@ export default function Home() {
     });
   }, [state]);
 
+  const reset = useCallback(async () => {
+    setMatch(false);
+  }, []);
+
   const send = useCallback(async () => {
     try {
       const users = state.map((data: Data) => data.username).filter((i) => i);
@@ -211,7 +217,6 @@ export default function Home() {
         return;
       }
 
-      setMatch(false);
       setIsLoading(true);
 
       if (process.env.API_URL) {
@@ -247,31 +252,44 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles["button-send-wrap"]}>
-        <motion.button
-          className={styles["button-send"]}
-          onClick={send}
-          initial={{ scale: 1 }}
-          whileTap={{ scale: 0.9 }}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <motion.div
-              className={styles.loading}
-              animate={{
-                rotate: 360,
-                transition: {
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: "linear",
-                },
-              }}
-            />
-          ) : (
-            "Send"
-          )}
-        </motion.button>
+        {match ? (
+          <motion.button
+            className={styles["button-send"]}
+            onClick={reset}
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.9 }}
+            disabled={isLoading}
+          >Let`s try again!</motion.button>
+        ) : (
+          <motion.button
+            className={styles["button-send"]}
+            onClick={send}
+            initial={{ scale: 1 }}  
+            whileTap={{ scale: 0.9 }}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <motion.div
+                className={styles.loading}
+                animate={{
+                  rotate: 360,
+                  transition: {
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                }}
+              />
+            ) : (
+              "Send"
+            )}
+          </motion.button>
+        )}
       </div>
-      <div className={styles.grid}>
+      <div
+        className={styles.grid}
+        style={{ pointerEvents: isLoading ? "none" : "auto" }}
+      >
         <Boxes state={state} setState={setState} setMatch={setMatch} />
         {match ? (
           <Match data={match}></Match>

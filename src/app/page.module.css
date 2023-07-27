@@ -1,3 +1,5 @@
+@value shadow1: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+
 .main {
   padding: 40px 60px;
   position: relative;
@@ -42,6 +44,27 @@
   overflow: hidden;
 }
 
+@media (max-width: 425px) {
+  .main {
+    padding: 40px 50px;
+  }
+}
+
+@media (max-width: 375px) {
+  .main {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .main {
+    padding: 40px 0;
+  }
+  .box {
+    width: 39vh;
+  }
+}
+
 .button-add-wrap {
   width: 40vh;
   height: 30vh;
@@ -58,15 +81,17 @@
   background: none;
   border: 1px solid #def;
   cursor: pointer;
-  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: shadow1;
 }
 
 .input-container {
+  height: 7vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: bottom;
   position: relative;
-  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: shadow1;
+  justify-content: space-between;
 }
 
 .input {
@@ -75,7 +100,6 @@
   background: none;
   color: #fff;
   font-size: 16px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   padding: 3px 10px;
   width: 100%;
@@ -92,7 +116,7 @@
 }
 
 .button-delete {
-  padding: 5px;
+  margin: 5px;
   background: none;
   font-size: large;
   border: none;
@@ -151,7 +175,7 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
-  height: 200px;
+  height: 21vh;
   padding: 5px 15px;
   color: #fff;
 }
@@ -161,11 +185,14 @@
 }
 
 .match-title-wrap {
-  padding: 10px 0;
+  height: 7vh;
   color: #fff;
+  border-bottom: 1px solid #def;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
+  box-shadow: shadow1;
 }
 
 .rainbow-animation-wrap {
