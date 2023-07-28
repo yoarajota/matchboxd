@@ -1,0 +1,124 @@
+  .box {
+    width: 40vh;
+    height: 30vh;
+    border-radius: 12px;
+    margin: 0 auto;
+    border: none;
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+    line-height: 1;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    outline: 0;
+    text-decoration: none;
+    background: var(--gray);
+    overflow: hidden;
+  }
+  
+  @media (max-width: 320px) {
+    .box {
+      width: 39vh;
+    }
+  }
+  
+  .input-container {
+    height: 7vh;
+    display: flex;
+    flex-direction: column;
+    align-items: bottom;
+    position: relative;
+    box-shadow: var(--shadow1);
+    justify-content: space-between;
+  }
+  
+  .input {
+    border: 1px solid var(--white);
+    border-width: 1px 0 1px 0;
+    background: none;
+    color: var(--light);
+    font-size: 16px;
+    transition: box-shadow 0.3s ease;
+    padding: 3px 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .input::placeholder {
+    color: var(--white);
+  }
+  
+  .input:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button-delete {
+    margin-right: 5px;
+    margin-top: 10px;
+    background: none;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-delete-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    padding: 0 5px;
+  }
+  
+  .watchlist {
+    overflow: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    height: 21vh;
+    padding: 5px 15px;
+    color: var(--light);
+  }
+  
+  .match-title {
+    font-weight: 600;
+  }
+  
+  .match-title-wrap {
+    height: 7vh;
+    color: var(--light);
+    border-bottom: 1px solid var(--white);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow1);
+  }
+  
+  .rainbow-animation-wrap {
+    display: flex;
+    height: 3px;
+    width: calc(40vh*4);
+  }
+  
+  .rainbow-animation-part {
+    width: 40vh;
+    height: 100%;
+  }
+  
+  .rainbow-animation-part:nth-child(1),
+  .rainbow-animation-part:nth-child(4) {
+    background-color: var(--orange);
+  }
+  
+  .rainbow-animation-part:nth-child(2),
+  .rainbow-animation-part:nth-child(5) {
+    background-color: var(--green);
+  }
+  
+  .rainbow-animation-part:nth-child(3) {
+    background-color: var(--blue);
+  }

@@ -8,6 +8,13 @@ export type WatchList = {
   username: string;
 };
 
+export type Films = {
+  films: Array<Film>;
+  username: string;
+};
+
 export type Result = {
   [key: string]: Array<Film>;
 };
+
+export type Scope = "watchlist" | "films";

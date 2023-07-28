@@ -1,16 +1,19 @@
-import { Film, Result, WatchList } from "../src/types";
+import { Film, Result, Scope } from "@/types";
 
-export function getWatchListIntersection(arrays: WatchList[]): Array<Film> {
+export function getListIntersection(
+  arrays: Array<any>,
+  scope: Scope
+): Array<Film> {
   const filmMap: Map<string, Film> = new Map();
 
-  for (const film of arrays[0].watchlist) {
+  for (const film of arrays[0][scope]) {
     filmMap.set(film.slug, film);
   }
 
   for (let i = 1; i < arrays.length; i++) {
-    const watchList = arrays[i];
+    const list = arrays[i];
 
-    if (watchList.watchlist.length === 0) {
+    if (list[scope].length === 0) {
       filmMap.clear();
       break;
     }
@@ -18,7 +21,7 @@ export function getWatchListIntersection(arrays: WatchList[]): Array<Film> {
     filmMap.forEach((outsideFilm) => {
       let finded = false;
 
-      for (const film of watchList.watchlist) {
+      for (const film of list[scope]) {
         const key = film.slug;
 
         if (!finded && key === outsideFilm.slug) {
@@ -45,11 +48,11 @@ function isFilmEqual(film1: Film, film2: Film): boolean {
   return film1.alt === film2.alt && film1.slug === film2.slug;
 }
 
-export function mountResult(result: WatchList[]) {
+export function mountResult(result: Array<any>, scope: Scope) {
   let obj: Result = {};
 
   for (let key in result) {
-    obj[result[key].username] = result[key].watchlist;
+    obj[result[key].username] = result[key][scope];
   }
 
   return obj;

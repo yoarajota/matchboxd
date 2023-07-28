@@ -1,0 +1,6 @@
+.home-button {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  color: var(--light);
+}
