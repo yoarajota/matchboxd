@@ -3,12 +3,14 @@ import { Films, WatchList } from "../../../types";
 import { getFromLetterboxd } from "../../../helpers/backend/letterboxd";
 import { getListIntersection, mountResult } from "@/helpers/backend";
 
-export const runtime = 'nodejs'
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   const { users, type } = await request.json();
 
   try {
+    // console.time("Getting Films");
+
     const result: WatchList[] | Films[] = await Promise.all(
       users.map(
         (username: string) =>
@@ -20,9 +22,20 @@ export async function POST(request: NextRequest) {
       throw error;
     });
 
+    // console.timeEnd("Getting Films");
+    // console.log("x-x-x-x-x-x-x");
+    // console.time("Mount Return");
+
+    let a = getListIntersection(result, type);
+    let b = mountResult(result, type);
+
+    // console.timeEnd("Mount Return");
+
+    // console.log("Ended, tho", new Date().toTimeString());
+
     return NextResponse.json({
-      match: getListIntersection(result, type),
-      result: mountResult(result, type),
+      match: a,
+      result: b,
     });
   } catch (error) {
     return NextResponse.json(

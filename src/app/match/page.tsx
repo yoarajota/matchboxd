@@ -11,6 +11,7 @@ import HomeButton from "@/components/HomeButton";
 import { FILMS, WATCHLIST, getFromLetterboxd } from "@/helpers/frontend";
 import Boxes from "@/components/match/Boxes";
 import Match from "@/components/match/Match";
+import Loading from "@/components/Loading";
 
 export type Data = {
   username: string;
@@ -118,21 +119,7 @@ export default function Page() {
             whileTap={{ scale: 0.9 }}
             disabled={isLoading}
           >
-            {isLoading ? (
-              <motion.div
-                className={styles.loading}
-                animate={{
-                  rotate: 360,
-                  transition: {
-                    duration: 1,
-                    repeat: Infinity,
-                    ease: "linear",
-                  },
-                }}
-              />
-            ) : (
-              "Send"
-            )}
+            {isLoading ? <Loading /> : "Send"}
           </motion.button>
         )}
       </motion.div>

@@ -1,6 +1,9 @@
   .box {
     width: 40vh;
+    min-width: 260px;
+    max-width: 100%;
     height: 30vh;
+    min-height: 200px;
     border-radius: 12px;
     margin: 0 auto;
     border: none;
@@ -24,6 +27,7 @@
   
   .input-container {
     height: 7vh;
+    min-height: 52px;
     display: flex;
     flex-direction: column;
     align-items: bottom;
