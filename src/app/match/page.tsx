@@ -87,12 +87,20 @@ export default function Page() {
                 data: { error },
               },
             }) => {
-              toast.error(error);
+              if (error.code === 504) {
+                toast.error(
+                  "Too much data to get! Try again in another moment or with other username."
+                );
+              } else {
+                toast.error(error);
+              }
             }
           );
       }
       setIsLoading(false);
     } catch (error) {
+      reset();
+      setIsLoading(false);
       toast.error("Something went wrong!");
     }
   }, [state, type]);
@@ -135,9 +143,10 @@ export default function Page() {
           <div
             className={styles.switch}
             data-isOn={type === FILMS}
-            onClick={() =>
-              setType((prev) => (prev === FILMS ? WATCHLIST : FILMS))
-            }
+            onClick={() => {
+              reset();
+              setType((prev) => (prev === FILMS ? WATCHLIST : FILMS));
+            }}
           >
             <motion.div
               className={styles.handle}
