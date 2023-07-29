@@ -84,12 +84,12 @@ export default function Page() {
           .catch(
             ({
               response: {
-                data: { error },
+                data: { error, status },
               },
             }) => {
-              if (error.code === 504) {
+              if (status === 504) {
                 toast.error(
-                  "Too much data to get! Try again in another moment or with other username."
+                  "Too much data to get! Try again or with other username."
                 );
               } else {
                 toast.error(error);
