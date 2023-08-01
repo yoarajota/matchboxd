@@ -2,8 +2,15 @@ import Close from "@/svg/close";
 import styles from "./page.module.css";
 import { motion } from "framer-motion";
 import { Film } from "@/types";
+import Clipboard from "@/svg/clipboard";
+import { useCallback } from "react";
+import { mountStringToCopy } from "@/helpers/frontend/index";
 
-const Box = ({ animate, data, handleDelete, handleUsername }: any) => {
+const Box = ({ data, handleDelete, handleUsername }: any) => {
+  const copy = useCallback(async () => {
+    await navigator.clipboard.writeText(mountStringToCopy(data.watchList))
+  }, [data.watchList])
+
   return (
     <motion.div
       transition={{ duration: 0.1, type: "tween", ease: "easeOut" }}
@@ -44,7 +51,7 @@ const Box = ({ animate, data, handleDelete, handleUsername }: any) => {
                 index < 20 ? { x: ["-8px", "0px"], opacity: [0, 1] } : {}
               }
               key={film.slug}
-              href={`https://www.letterboxd.com/${film.slug}`}
+              href={`https://www.letterboxd.com${film.slug}`}
               transition={{ delay: index * 0.1 }}
             >
               {film.alt}
@@ -52,6 +59,15 @@ const Box = ({ animate, data, handleDelete, handleUsername }: any) => {
           );
         })}
       </div>
+      {data?.watchList.length > 0 &&
+        <motion.div animate={{ opacity: [0, 1] }} transition={{ delay: 1 }} className={styles['clipboard-wrap']}>
+          <div>
+            <motion.button onClick={copy} initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Clipboard />
+            </motion.button>
+          </div>
+        </motion.div>
+      }
     </motion.div>
   );
 };

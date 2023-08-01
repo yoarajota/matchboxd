@@ -238,7 +238,7 @@
   box-shadow: var(--shadow1);
 }
 
-.switch[data-isOn="true"] {
+.switch[data-ison="true"] {
   justify-content: flex-end;
 }
 

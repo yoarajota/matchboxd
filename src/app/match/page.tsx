@@ -142,7 +142,7 @@ export default function Page() {
         <span>
           <div
             className={styles.switch}
-            data-isOn={type === FILMS}
+            data-ison={type === FILMS}
             onClick={() => {
               reset();
               setType((prev) => (prev === FILMS ? WATCHLIST : FILMS));

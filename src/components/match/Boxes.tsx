@@ -48,7 +48,6 @@ const Boxes = ({ state, setState, setMatch }: any) => {
             handleUsername(data.id, username);
           }}
           data={data}
-          animate={i > 1}
           key={data.id}
         />
       ))}
