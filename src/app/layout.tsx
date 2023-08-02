@@ -1,12 +1,17 @@
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import styles from "./page.module.css";
 import { ToastContainer } from "react-toastify";
 import LetterboxLogo from "@/svg/letterboxLogo";
 
-const inter = Inter({ subsets: ["latin"] });
+const noto = Noto_Sans({
+  display: "swap",
+  variable: "--font-noto",
+  weight: ["500", "600", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Matchboxd 🎬",
@@ -18,10 +23,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={noto.className}>
         <header>
           <div className={styles.header}>
             <div>

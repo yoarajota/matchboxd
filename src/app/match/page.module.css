@@ -107,7 +107,7 @@
   border: none;
   border-radius: 3px;
   display: flex;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1;
   cursor: pointer;
   letter-spacing: .075em;
@@ -138,7 +138,7 @@
 }
 
 .match-title {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .match-title-wrap {
