@@ -47,7 +47,7 @@ const Match = ({ data }: any) => {
       {data?.length > 0 &&
         <motion.div animate={{ opacity: [0, 1] }} transition={{ delay: 1 }} className={styles['clipboard-wrap']}>
           <div>
-            <motion.button onClick={copy} initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+            <motion.button title="Copy the list to clipboard" onClick={copy} initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Clipboard />
             </motion.button>
           </div>

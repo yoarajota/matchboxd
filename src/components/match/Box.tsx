@@ -22,7 +22,8 @@ const Box = ({ data, handleDelete, handleUsername }: any) => {
       <div className={styles["input-container"]}>
         <div className={styles["button-delete-wrap"]}>
           <motion.button
-            tabIndex={2}
+            title="Delete user"
+            // tabIndex={1}
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.01 }}
             className={styles["button-delete"]}
@@ -32,7 +33,7 @@ const Box = ({ data, handleDelete, handleUsername }: any) => {
           </motion.button>
         </div>
         <input
-          tabIndex={1}
+          // tabIndex={0}
           value={data?.username}
           onChange={({ target: { value } }) => handleUsername(value)}
           type="text"
@@ -62,7 +63,7 @@ const Box = ({ data, handleDelete, handleUsername }: any) => {
       {data?.watchList.length > 0 &&
         <motion.div animate={{ opacity: [0, 1] }} transition={{ delay: 1 }} className={styles['clipboard-wrap']}>
           <div>
-            <motion.button onClick={copy} initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+            <motion.button title="Copy the list to clipboard" onClick={copy} initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Clipboard />
             </motion.button>
           </div>

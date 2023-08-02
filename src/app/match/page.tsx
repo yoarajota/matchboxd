@@ -103,7 +103,7 @@ export default function Page() {
       setIsLoading(false);
       toast.error("Something went wrong!");
     }
-  }, [state, type]);
+  }, [reset, state, type]);
 
   return (
     <main className={styles.main}>
@@ -111,6 +111,7 @@ export default function Page() {
       <motion.div {...fadeIn} className={styles["button-send-wrap"]}>
         {match ? (
           <motion.button
+            title="Reset the form"
             className={styles["button-send"]}
             onClick={reset}
             whileTap={{ scale: 0.9 }}
@@ -121,6 +122,7 @@ export default function Page() {
           </motion.button>
         ) : (
           <motion.button
+            title="Send users"
             className={styles["button-send"]}
             onClick={send}
             initial={{ scale: 1 }}
@@ -133,11 +135,11 @@ export default function Page() {
       </motion.div>
       <motion.div {...fadeIn} className={styles["select-wrap"]}>
         <span>
-          <motion.h4
+          <motion.p
             animate={type !== WATCHLIST ? { opacity: 0.4 } : { scale: 1.05 }}
           >
             Watchlist
-          </motion.h4>
+          </motion.p>
         </span>
         <span>
           <div
@@ -160,11 +162,11 @@ export default function Page() {
           </div>
         </span>
         <span>
-          <motion.h4
+          <motion.p
             animate={type !== FILMS ? { opacity: 0.4 } : { scale: 1.05 }}
           >
             Films
-          </motion.h4>
+          </motion.p>
         </span>
       </motion.div>
       <div
@@ -182,6 +184,7 @@ export default function Page() {
             className={styles["button-add-wrap"]}
           >
             <motion.button
+              title="Add new user"
               className={styles["button-add"]}
               initial={{ scale: 1 }}
               whileTap={{ scale: 0.9 }}

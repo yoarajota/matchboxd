@@ -107,7 +107,6 @@
   border: none;
   border-radius: 3px;
   display: flex;
-  font-weight: 400;
   line-height: 1;
   cursor: pointer;
   letter-spacing: .075em;
@@ -115,7 +114,8 @@
   font-size: 1.23076923rem;
   padding: .425em 1.5em;
   background: var(--green);
-  color: var(--light);
+  color: var(--green-button-text);
+  font-weight: 900;
   min-width: 120px;
   justify-content: center;
 }
