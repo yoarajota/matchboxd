@@ -1,7 +1,3 @@
-Below is an enhanced version of the README for the `matchboxd` project, incorporating details from the provided `package.json` and improving the structure, clarity, and professionalism while maintaining the original content where relevant. The code snippet has been reformatted for better readability, and additional sections have been added to provide comprehensive information about the project.
-
----
-
 # Matchboxd 🎬
 
 **Matchboxd** enhances your movie selection experience by helping you find the perfect film to watch today! By comparing watchlists or film lists from Letterboxd users, Matchboxd identifies common movies to make your movie night planning seamless and fun.
