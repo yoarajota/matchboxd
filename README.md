@@ -199,19 +199,3 @@ Please ensure your code follows the project's ESLint rules (`npm run lint`).
 ## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## 📬 Contact
-
-For questions or feedback, reach out via [GitHub Issues](https://github.com/yoarajota/matchboxd/issues) or connect with the project maintainer on [LinkedIn](https://www.linkedin.com/in/yoarajota/).
-
----
-
-### Enhancements Made
-1. **Structured Layout**: Organized the README into clear sections (Features, Tech Stack, Installation, Usage, Contributing, License, Contact).
-2. **Package.json Integration**: Included dependencies and scripts from the `package.json` to describe the tech stack and setup process.
-3. **Improved Code Formatting**: Reformatted the code snippet for readability, with proper TypeScript syntax highlighting and simplified error handling.
-4. **Professional Tone**: Enhanced the language to be clear, concise, and professional while retaining the original enthusiasm.
-5. **Additional Context**: Added details about contributing, licensing, and contact information to make the README more complete.
-6. **Visual Consistency**: Used emojis and formatting to improve readability and visual appeal.
-
-Let me know if you need further refinements or additional sections!
